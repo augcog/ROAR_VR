@@ -11,31 +11,19 @@ public class GstreamerFront : MonoBehaviour
     public Material material;
     public int flag;
     Mat fra;
-    VideoCapture reader;
-    [DllImport("GStreamerReader.dll")] private static extern void GR_Init(int port1, int port2);
-    [DllImport("GStreamerReader.dll")] private static extern IntPtr GR_GetFrame(ref int width, ref int height, int flag);
-    [DllImport("GStreamerReader.dll")] private static extern void GR_Release();
+    private Gstreamer gst;
     void Start()
     {
         texture = new Texture2D(1280, 720);
-        if (flag == 1)
-        {
-            GR_Init(5000, 5001);
-        }
+        gst = GameObject.Find("Utility").GetComponent<Gstreamer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        int width = 0, height = 0;
-        IntPtr data = GR_GetFrame(ref width, ref height, flag);
-        fra = new Mat(height, width, MatType.CV_8UC3, data);
+        fra = gst.frame2;
         texture.LoadImage(fra.ToBytes());
         material.mainTexture = texture;
         material.color = Color.white;
-    }
-    private void OnDestroy()
-    {
-        GR_Release();
     }
 }
