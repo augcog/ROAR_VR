@@ -33,6 +33,11 @@ public class DataReader : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        receiveThread.Abort();
+    }
+
     private void ReceiveData()
     {
         UdpClient client = new UdpClient(new IPEndPoint(IPAddress.Parse("127.0.0.1"), PORT));

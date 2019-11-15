@@ -15,6 +15,7 @@ public class GstreamerRear : MonoBehaviour
     public int flag;
     Mat fra;
     private Gstreamer gst;
+
     void Start()
     {
         texture = new Texture2D(1280, 720);
@@ -26,8 +27,10 @@ public class GstreamerRear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fra = gst.frame1;
-        texture.LoadImage(fra.ToBytes());
+        // gst.rwl1.AcquireReaderLock(0);
+        // fra = gst.frame1;
+        texture.LoadImage(gst.frame1.ToBytes());
+        // gst.rwl1.ReleaseReaderLock();
         Color[] c = texture.GetPixels(0, 0, 720, 720);
         textureleft.SetPixels(c);
         textureleft.Apply();

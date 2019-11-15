@@ -12,6 +12,7 @@ public class GstreamerFront : MonoBehaviour
     public int flag;
     Mat fra;
     private Gstreamer gst;
+
     void Start()
     {
         texture = new Texture2D(1280, 720);
@@ -21,8 +22,10 @@ public class GstreamerFront : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fra = gst.frame2;
-        texture.LoadImage(fra.ToBytes());
+        // gst.rwl2.AcquireReaderLock(0);
+        // fra = gst.frame2;
+        texture.LoadImage(gst.frame2.ToBytes());
+        // gst.rwl2.ReleaseReaderLock();
         material.mainTexture = texture;
         material.color = Color.white;
     }

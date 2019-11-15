@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading;
 using UnityEngine;
 using OpenCvSharp;
 
@@ -13,25 +14,46 @@ public class Gstreamer : MonoBehaviour
 
     public int port1, port2;
     public Mat frame1, frame2;
+    public ReaderWriterLock rwl1, rwl2;
+    private Thread receiveThread;
 
     // Start is called before the first frame update
     void Start()
     {
-        GR_Init(port1, port2);
+        rwl1 = new ReaderWriterLock();
+        rwl2 = new ReaderWriterLock();
+        receiveThread = new Thread(new ThreadStart(ReceiveData));
+        receiveThread.IsBackground = true;
+        receiveThread.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        int width = 0, height = 0;
-        IntPtr data = GR_GetFrame(ref width, ref height, 1);
-        frame1 = new Mat(height, width, MatType.CV_8UC3, data);
-        data = GR_GetFrame(ref width, ref height, 2);
-        frame2 = new Mat(height, width, MatType.CV_8UC3, data);
+        
     }
 
     private void OnDestroy()
     {
+        receiveThread.Abort();
         GR_Release();
+    }
+
+    private void ReceiveData()
+    {
+        GR_Init(port1, port2);
+        while (true)
+        {
+            int width = 0, height = 0;
+            IntPtr data = GR_GetFrame(ref width, ref height, 1);
+            rwl1.AcquireWriterLock(0);
+            frame1 = new Mat(height, width, MatType.CV_8UC3, data);
+            Debug.Log(frame1.Rows);
+            rwl1.ReleaseWriterLock();
+            data = GR_GetFrame(ref width, ref height, 2);
+            rwl2.AcquireWriterLock(0);
+            frame2 = new Mat(height, width, MatType.CV_8UC3, data);
+            rwl2.ReleaseWriterLock();
+        }
     }
 }

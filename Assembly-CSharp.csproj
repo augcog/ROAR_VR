@@ -405,6 +405,7 @@
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
     <Compile Include="Assets\scripts\DashboardGetData.cs" />
     <Compile Include="Assets\scripts\DataReader.cs" />
+    <Compile Include="Assets\scripts\Gstreamer.cs" />
     <Compile Include="Assets\scripts\GstreamerFront.cs" />
     <Compile Include="Assets\scripts\GstreamerRear.cs" />
     <Compile Include="Assets\scripts\SWheelGetData.cs" />
