@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -817,6 +817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: f3252a3e1b0748e4ebfd5ab5c1100470, type: 2}
+  flag: 2
 --- !u!114 &1389684277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,6 +1227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SportCar
       objectReference: {fileID: 0}
+    - target: {fileID: 1536997390485366, guid: f8b49f9d229541d43b30476c740c2477, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4735839243174642, guid: f8b49f9d229541d43b30476c740c2477, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1309,6 +1314,16 @@ PrefabInstance:
     - target: {fileID: 1317741990675356, guid: f8b49f9d229541d43b30476c740c2477, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64145693775362226, guid: f8b49f9d229541d43b30476c740c2477,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64117512483129164, guid: f8b49f9d229541d43b30476c740c2477,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8b49f9d229541d43b30476c740c2477, type: 3}
@@ -1510,3 +1525,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialleft: {fileID: 2100000, guid: 990cea09be73a9242b5ea56ce698b373, type: 2}
   materialright: {fileID: 2100000, guid: 397681021102cd246900dcfc9c9853ae, type: 2}
+  flag: 1
