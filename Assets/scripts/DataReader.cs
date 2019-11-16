@@ -35,7 +35,10 @@ public class DataReader : MonoBehaviour
 
     private void OnDestroy()
     {
-        receiveThread.Abort();
+        if (receiveThread != null)
+        {
+            receiveThread.Abort();
+        }
     }
 
     private void ReceiveData()

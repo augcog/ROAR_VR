@@ -354,6 +354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   port1: 5000
   port2: 5001
+  frame1: 
+  frame2: 
 --- !u!1001 &587762447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -890,7 +892,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: f3252a3e1b0748e4ebfd5ab5c1100470, type: 2}
-  flag: 2
 --- !u!114 &1389684277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,6 +1138,10 @@ PrefabInstance:
     - target: {fileID: 1211689790303500, guid: e9749fd59b5ac604bb06250366bde278, type: 3}
       propertyPath: m_Name
       value: SWheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211689790303500, guid: e9749fd59b5ac604bb06250366bde278, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4556981078473730, guid: e9749fd59b5ac604bb06250366bde278, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1416,6 +1421,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114944249367113288, guid: f8b49f9d229541d43b30476c740c2477,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8b49f9d229541d43b30476c740c2477, type: 3}
 --- !u!1 &2046897050
@@ -1616,4 +1626,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialleft: {fileID: 2100000, guid: 990cea09be73a9242b5ea56ce698b373, type: 2}
   materialright: {fileID: 2100000, guid: 397681021102cd246900dcfc9c9853ae, type: 2}
-  flag: 1
