@@ -8,7 +8,7 @@ using OpenCvSharp;
 
 public class Gstreamer : MonoBehaviour
 {
-    [DllImport("GStreamerReader.dll")] private static extern void GR_Init(int port1, int port2);
+    [DllImport("GStreamerReader.dll")] private static extern bool GR_Init(int port1, int port2);
     [DllImport("GStreamerReader.dll")] private static extern IntPtr GR_GetFrame(ref int width, ref int height, int flag);
     [DllImport("GStreamerReader.dll")] private static extern void GR_Release();
 
@@ -42,7 +42,13 @@ public class Gstreamer : MonoBehaviour
     {
         try
         {
-            GR_Init(port1, port2);
+            while (true)
+            {
+                if (GR_Init(port1, port2))
+                {
+                    break;
+                }
+            }
             while (true)
             {
                 int width = 0, height = 0;
