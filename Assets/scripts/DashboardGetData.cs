@@ -16,9 +16,6 @@ public class DashboardGetData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        reader.rwl.AcquireReaderLock(5);
-        transform.rotation = Quaternion.Euler(new Vector3(12.56f, 0, -117f * reader.steering));
-        reader.rwl.ReleaseReaderLock();
         for (int i = 0; i < transform.childCount; ++i)
         {
             GameObject go = transform.GetChild(i).gameObject;
