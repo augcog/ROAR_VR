@@ -11,10 +11,10 @@ public class GstreamerRear : MonoBehaviour
 {
     // Start is called before the first frame update
     private Texture2D texture;
-    private Texture2D textureleft;
-    private Texture2D textureright;
+    //private Texture2D textureleft;
+    //private Texture2D textureright;
     public Material materialleft;
-    public Material materialright;
+    //public Material materialright;
     private Gstreamer gst;
     public int width,height;
     void Start()
@@ -23,15 +23,15 @@ public class GstreamerRear : MonoBehaviour
         //width = gst.width;
         //height = gst.height;
         texture = new Texture2D(width, height, TextureFormat.RGB24, false, false);
-        textureleft = new Texture2D(height, height);
-        textureright = new Texture2D(height, height);
+        //textureleft = new Texture2D(height, height);
+        //textureright = new Texture2D(height, height);
         gst = GameObject.Find("Utility").GetComponent<Gstreamer>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float t1= Time.time;
+        //float t1= Time.time;
         /*Color32[] c = new Color32[width * height];
 
         //Get the pixel data from parallel loop
@@ -57,17 +57,18 @@ public class GstreamerRear : MonoBehaviour
         texture.LoadRawTextureData(gst.frame1);
         texture.Apply();
         //texture.LoadImage(gst.frame1);
-        Color[] c1 = texture.GetPixels(0, 0, height, height);
+        /*Color[] c1 = texture.GetPixels(0, 0, height, height);
         textureleft.SetPixels(c1);
         textureleft.Apply();
-        materialleft.mainTexture = textureleft;
+        //materialleft.mainTexture = textureleft;*/
+        materialleft.mainTexture = texture;
         materialleft.color = Color.white;
 
-        c1 = texture.GetPixels(width-height, 0, height, height);
+        /*c1 = texture.GetPixels(width-height, 0, height, height);
         textureright.SetPixels(c1);
         textureright.Apply();
         materialright.mainTexture = textureright;
-        materialright.color = Color.white;
+        materialright.color = Color.white;*/
         //Debug.Log((Time.time - t1)*1000);
     }
 }
