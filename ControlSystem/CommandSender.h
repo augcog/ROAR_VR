@@ -1,5 +1,6 @@
 #pragma once
 #include <set>
+#include <cmath>
 #include <string>
 #include <sstream>
 #include "ws2tcpip.h"
@@ -14,6 +15,7 @@
 typedef UINT8 COMMAND_TYPE;
 #define COMMAND_THROTTLE 0
 #define COMMAND_STEERING 1
+#define NONE 10000000
 
 class CommandSender {
 public:
@@ -21,7 +23,7 @@ public:
 	~CommandSender();
 
 	bool Match();
-	void sendCommand(COMMAND_TYPE type, int value);
+	void sendCommand(COMMAND_TYPE type, int value, int oriValue = NONE);
 
 private:
 	std::string GetBroadcastAddress();

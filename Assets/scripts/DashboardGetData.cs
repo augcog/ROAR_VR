@@ -16,23 +16,6 @@ public class DashboardGetData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < transform.childCount; ++i)
-        {
-            GameObject go = transform.GetChild(i).gameObject;
-            if (go.name == "ArrowUp")
-            {
-                float s = (reader.throttle > 0 ? reader.throttle : 0);
-                Color color = go.GetComponent<Image>().color;
-                color.a = s;
-                go.GetComponent<Image>().color = color;
-            }
-            if (go.name == "ArrowDown")
-            {
-                float s = (reader.throttle < 0 ? -reader.throttle : 0);
-                Color color = go.GetComponent<Image>().color;
-                color.a = s;
-                go.GetComponent<Image>().color = color;
-            }
-        }
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90f * reader.throttle));
     }
 }

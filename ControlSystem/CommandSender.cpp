@@ -147,13 +147,21 @@ std::string CommandSender::CombineIPMask(std::string IP, UINT8 prefixLength, int
 }
 
 
-void CommandSender::sendCommand(COMMAND_TYPE type, int value) {
+void CommandSender::sendCommand(COMMAND_TYPE type, int value, int oriValue) {
+	if (type == COMMAND_STEERING) {
+		char bf[100];
+		sprintf(bf, "%d %d\n", value, oriValue);
+		TRACE(bf);
+	}
 	int buf[2];
 	buf[0] = htonl(type);
 	buf[1] = htonl(value);
 	send(tcpSock, (char *)buf, sizeof(buf), 0);
 
 	// Send to local port for Unity
+	if (oriValue != NONE) {
+		buf[1] = htonl(oriValue);
+	}
 	SOCKET sock = socket(AF_INET, SOCK_DGRAM, 0);
 	struct sockaddr_in recv_addr;
 	recv_addr.sin_family = AF_INET;

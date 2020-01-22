@@ -14,17 +14,21 @@ public class Gstreamer : MonoBehaviour
     public byte[] frame1, frame2;
     public ReaderWriterLock rwl1, rwl2;
     public Boolean useFisheye;
-    private Thread receiveThread;
+    private Thread receiveThread1, receiveThread2;
     public int size1,size2;
  
     // Start is called before the first frame update
     void Start()
     {
-        receiveThread = new Thread(new ThreadStart(ReceiveData));
-        receiveThread.IsBackground = true;
-        receiveThread.Start();
+        GR_Init(port1, port2);
+        receiveThread1 = new Thread(new ThreadStart(ReceiveData1));
+        receiveThread1.IsBackground = true;
+        receiveThread1.Start();
+        receiveThread2 = new Thread(new ThreadStart(ReceiveData2));
+        receiveThread2.IsBackground = true;
+        receiveThread2.Start();
         //GR_Init(port1, port2);
-      
+
     }
 
     // Update is called once per frame
@@ -45,14 +49,20 @@ public class Gstreamer : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (receiveThread != null)
+        if (receiveThread1 != null)
         {
-            receiveThread.Abort();
-            receiveThread.Join();
+            receiveThread1.Abort();
+            receiveThread1.Join();
+        }
+        if (receiveThread2 != null)
+        {
+            receiveThread2.Abort();
+            receiveThread2.Join();
         }
         GR_Release();
     }
 
+    /*
     private void ReceiveData()
     {
         try
@@ -67,25 +77,50 @@ public class Gstreamer : MonoBehaviour
             Debug.Log("switching");
             while (true)
             {
-               
-                //frame2 = (new Mat(height, width, MatType.CV_8UC3, data2)).ToBytes();
-
-                //DateTime dt = DateTime.Now;
-                IntPtr data1=GR_GetFrame(1,useFisheye,ref size1);
-
-                //Debug.Log(DateTime.Now.Subtract(dt));
-                //dt= DateTime.Now;
-
-                //frame1 = (new Mat(height, width, MatType.CV_8UC3, data1)).ToBytes();
-                frame1 = new byte[size1];
-                //frame1 = (new Mat(data1)).ToBytes();
-                System.Runtime.InteropServices.Marshal.Copy(data1, frame1, 0, size1);
-                IntPtr data2 = GR_GetFrame(2, useFisheye,ref size2);
+                
+                IntPtr data2= GR_GetFrame(2, useFisheye, ref size2);
                 frame2 = new byte[size2];
                 System.Runtime.InteropServices.Marshal.Copy(data2, frame2, 0, size2);
-                //frame2 = (new Mat(data2)).ToBytes();
-                //Debug.Log(DateTime.Now.Subtract(dt));
 
+                //IntPtr data1=GR_GetFrame(1, useFisheye, ref size1);
+                //frame1 = new byte[size1];
+                //System.Runtime.InteropServices.Marshal.Copy(data1, frame1, 0, size1);
+
+            }
+        }
+        catch
+        {
+            return;
+        }
+    }
+    */
+    private void ReceiveData1()
+    {
+        try
+        {
+            while (true)
+            {
+                IntPtr data1=GR_GetFrame(1, useFisheye, ref size1);
+                frame1 = new byte[size1];
+                System.Runtime.InteropServices.Marshal.Copy(data1, frame1, 0, size1);
+
+            }
+        }
+        catch
+        {
+            return;
+        }
+    }
+
+    private void ReceiveData2()
+    {
+        try
+        {
+            while (true)
+            {
+                IntPtr data2 = GR_GetFrame(2, useFisheye, ref size2);
+                frame2 = new byte[size2];
+                System.Runtime.InteropServices.Marshal.Copy(data2, frame2, 0, size2);
 
             }
         }
