@@ -80,6 +80,8 @@ BOOL CSteeringWheelSDKDemoDlg::OnInitDialog() {
 
 	SetTimer(1, 1000 / 30, NULL);
 
+	OnBnClickedInit();
+
 	return true;  // return true  unless you set the focus to a control
 }
 
@@ -116,6 +118,7 @@ HCURSOR CSteeringWheelSDKDemoDlg::OnQueryDragIcon() {
 void CSteeringWheelSDKDemoDlg::OnTimer(UINT_PTR nIDEvent) {
 	UNREFERENCED_PARAMETER(nIDEvent);
 
+	int calibration_offset = 4500;
 	int index_ = 0;
 	float speedParam_[LOGI_MAX_CONTROLLERS] = { 0.0f, 0.0f };
 	float brakeParam_[LOGI_MAX_CONTROLLERS] = { 0.0f, 0.0f };
@@ -309,12 +312,20 @@ void CSteeringWheelSDKDemoDlg::OnTimer(UINT_PTR nIDEvent) {
 				wsprintf(sBuffer_, TEXT("%ld"), m_DIJoyState2Device[index_]->lX);
 				::SetWindowText(::GetDlgItem(m_hWnd, IDC_X_AXIS), sBuffer_);
 				if (m_lastDIJoyState2Device[index_] == NULL || m_DIJoyState2Device[index_]->lX != m_lastDIJoyState2Device[index_]->lX) {
-					commandSender->sendCommand(COMMAND_STEERING, m_DIJoyState2Device[index_]->lX);
+					int val = m_DIJoyState2Device[index_]->lX + calibration_offset, newVal = 0;
+					if (val != 0) {
+						int sgn = val / int(abs(val));
+						newVal = int(pow((double)abs(val) / 32767, 1.5) * 32767 + 0.5) * sgn;
+					}
+					commandSender->sendCommand(COMMAND_STEERING, newVal, val - calibration_offset);
 				}
 
 				wsprintf(sBuffer_, TEXT("%ld"), m_DIJoyState2Device[index_]->lY);
 				::SetWindowText(::GetDlgItem(m_hWnd, IDC_Y_AXIS), sBuffer_);
 				if (m_lastDIJoyState2Device[index_] == NULL || m_DIJoyState2Device[index_]->lY != m_lastDIJoyState2Device[index_]->lY) {
+					if (-m_DIJoyState2Device[index_]->lY < 0) {
+						commandSender->sendCommand(COMMAND_THROTTLE, 0);
+					}
 					commandSender->sendCommand(COMMAND_THROTTLE, -m_DIJoyState2Device[index_]->lY);
 				}
 

@@ -10,7 +10,7 @@ using UnityEngine;
 public class DataReader : MonoBehaviour
 {
 
-    private const int PORT = 4567;
+    private const int PORT = 7788;
     private const int COMMAND_THROTTLE = 0;
     private const int COMMAND_STEERING = 1;
     public float throttle = 0, steering = 0;
@@ -43,7 +43,7 @@ public class DataReader : MonoBehaviour
 
     private void ReceiveData()
     {
-        UdpClient client = new UdpClient(new IPEndPoint(IPAddress.Parse("127.0.0.1"), PORT));
+        UdpClient client = new UdpClient(PORT);
         IPEndPoint remote = new IPEndPoint(IPAddress.Any, 0);
         byte[] buffer = new byte[4096];
         byte[] tmpBuffer = new byte[4096];
