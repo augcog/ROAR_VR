@@ -1,6 +1,7 @@
 # IRG-RACING-VR
-## Video Stream
-1.set CLIENT_IP to your computer's(not jetson nano) IP address in  ~/mark1/myconfig.py.   
-2.Run "python manage.py drive --camera stereo" in ~/mark1.   
-(For test Run stream.py).  
-3.Run unity project  
+
+## Setup
+Refer to the PC part of [ROARVR](https://github.com/augcog/ROARVR/tree/dev#pc)
+
+## Build and Run
+Double click Assets/Scenes/SampleScene.unity to open the Scene. You may customize any settings and click on play to run.
