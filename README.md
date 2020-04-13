@@ -8,7 +8,18 @@ To develop and build the unity project, make sure you intstall [GStreamer](https
 
 For reference, we tested on [unity 2019.3.4](https://unity.cn/releases), [GStreamer 1.16.2 devel-msvc-x86_64](https://gstreamer.freedesktop.org/data/pkg/windows/1.16.2/gstreamer-1.0-devel-msvc-x86_64-1.16.2.msi),[GStreamer 1.16.2 devel-msvc-x86_64](https://gstreamer.freedesktop.org/data/pkg/windows/1.16.2/gstreamer-1.0-msvc-x86_64-1.16.2.msi), and [opencv 4.1.0](https://opencv.org/releases/page/2/).
 ## Build and Run
-Double click `Assets/Scenes/SampleScene.unity` to open the Scene. You may customize any settings and click on play to run.
+Double click `Assets/Scenes/SampleScene.unity` to open the Scene. 
+
+First you need to make sure your receiving resolution is the same as your sending resolution. First click on object `Utility` under `SampleScene`, and in the `Inspector` tab on the right side, you can see two public variables `width` and `height`. Set these two values the same as `IMAGE_W` and `IMAGE_H` in ROAR_Jetson/myconfig.py. 
+
+Here is another variable called 'fisheye',  You may activate it to undistort the fisheye rear camera. We tested it on our MIPI camera with resolution 1280*720. IF you use different camera, you can deactivate it or modify the intrinsics.txt and dis_coeff.txt to fit your own camera.
+
+Besides, you may want to customize the rendering resolution for either front-view window or rear-view mirror. These settings can be found in the `Inspector` tab of `Canvas/FrontView` and `backmirror/Canvas/Image`.
+
+You may customize any settings and click on play to run.
+
+When you want to stop everything, there is a bug here. Never stop program running on Jetson before stopping the game playing in **Unity**, otherwise **Unity** may hang.
+
 
 ## Manual
 In `Assets/Scenes/SampleScene.unity`, the `Utility` object acts as the manager for the scene. It has two components `DataReader.cs`
