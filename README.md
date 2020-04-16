@@ -8,6 +8,28 @@ To develop and build the unity project, make sure you intstall [GStreamer](https
 
 For reference, we tested on [unity 2019.3.4](https://unity.cn/releases), [GStreamer 1.16.2 devel-msvc-x86_64](https://gstreamer.freedesktop.org/data/pkg/windows/1.16.2/gstreamer-1.0-devel-msvc-x86_64-1.16.2.msi),[GStreamer 1.16.2-msvc-x86_64](https://gstreamer.freedesktop.org/data/pkg/windows/1.16.2/gstreamer-1.0-msvc-x86_64-1.16.2.msi), and [opencv 4.1.0](https://opencv.org/releases/page/2/).
 ## Build and Run
+
+### Testing without launching a car :
+
+Here are the commands streaming test videos to port 5000 & 5001 on your host computer that could be used as video sources for Unity. Once you successfully Installed gstreamer, you will be able to run these commands in the terminal.
+
+Sender:
+
+gst-launch-1.0 videotestsrc ! video/x-raw,width=1280,height=720 ! x264enc ! h264parse ! rtph264pay ! udpsink host=127.0.0.1 port=5000
+
+gst-launch-1.0 videotestsrc ! video/x-raw,width=1280,height=720 ! x264enc ! h264parse ! rtph264pay ! udpsink host=127.0.0.1 port=5001
+
+You may replace videotestsrc to autovideosrc or some other sources for different videos.
+
+You can run the following command in terminal for testing.
+
+Command line Reciever:
+
+gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! autovideosink
+
+if you see a video shows in a pop-up window, it means that you have successfully streamed the video, you can now terminate the command line reciever and start working on Unity.Good Luck!
+
+### Unity
 Double click `Assets/Scenes/SampleScene.unity` to open the Scene. 
 
 First you need to make sure your receiving resolution is the same as your sending resolution. First click on object `Utility` under `SampleScene`, and in the `Inspector` tab on the right side, you can see two public variables `width` and `height`. Set these two values the same as `IMAGE_W` and `IMAGE_H` in ROAR_Jetson/myconfig.py. 
