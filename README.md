@@ -13,6 +13,8 @@ For reference, we tested on [unity 2019.3.4](https://unity.cn/releases), [GStrea
 
 Here are the commands streaming test videos to port 5000 & 5001 on your host computer that could be used as video sources for Unity. Once you successfully Installed gstreamer, you will be able to run these commands in the terminal.
 
+Note that this require you to have Gstreamer installed and have PATH variable pointing to your gst-launch-1.0.exe. You may find how to modify your PATH [here](https://docs.alfresco.com/4.2/tasks/fot-addpath.html):
+
 Sender:
 
 gst-launch-1.0 videotestsrc ! video/x-raw,width=1280,height=720 ! x264enc ! h264parse ! rtph264pay ! udpsink host=127.0.0.1 port=5000
@@ -27,7 +29,7 @@ Command line Reciever:
 
 gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, encoding-name=H264,payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! autovideosink
 
-if you see a video shows in a pop-up window, it means that you have successfully streamed the video, you can now terminate the command line reciever and start working on Unity.Good Luck!
+if you see a video shows in a pop-up window(it should show something like an old TV is not receiving signal, a screen of lots of colored strips), it means that you have successfully streamed the video, you can now terminate the command line reciever and start working on Unity.Good Luck!
 
 ### Unity
 Double click `Assets/Scenes/SampleScene.unity` to open the Scene. 
