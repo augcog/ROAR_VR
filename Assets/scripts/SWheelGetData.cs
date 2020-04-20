@@ -15,8 +15,8 @@ public class SWheelGetData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        reader.rwl.AcquireReaderLock(5);
+        //reader.rwl.AcquireReaderLock(5);
         transform.rotation = Quaternion.Euler(new Vector3(12.56f, 0, -117f * reader.steering));
-        reader.rwl.ReleaseReaderLock();
+        //reader.rwl.ReleaseReaderLock();
     }
 }

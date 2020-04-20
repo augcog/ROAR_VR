@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 76992775}
   - component: {fileID: 76992774}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: back_view_canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1241,10 +1241,9 @@ GameObject:
   - component: {fileID: 1389684272}
   - component: {fileID: 1389684274}
   - component: {fileID: 1389684275}
-  - component: {fileID: 1389684277}
   - component: {fileID: 1389684276}
   m_Layer: 5
-  m_Name: FrontView
+  m_Name: front_view_canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1360,21 +1359,6 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: f3252a3e1b0748e4ebfd5ab5c1100470, type: 2}
   width: 1280
   height: 720
---- !u!114 &1389684277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389684270}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d6e9fcab2d90fe448bb909ad893ba3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  JpegData: 
-  resolution: 1280x720
-  image: {fileID: 1389684272}
 --- !u!1 &1446744051
 GameObject:
   m_ObjectHideFlags: 0

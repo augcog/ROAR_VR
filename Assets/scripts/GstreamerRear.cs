@@ -39,6 +39,6 @@ public class GstreamerRear : MonoBehaviour
         texture.LoadRawTextureData(gst.frame1);
         texture.Apply();
         materialleft.mainTexture = texture;
-        materialleft.color = Color.white;
+        //materialleft.color = Color.white;
     }
 }
