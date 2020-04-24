@@ -51,4 +51,4 @@ and `GStreamer.cs`.
 
 `DataReader.cs` is a script automatically runs and fetches throttle and steering control signals.
 
-`GStreamer.cs` is a script that fetches video streams through GStreamer framework. Port 1 is for the front view camera, and port 2 is for the rear view camera.
+`GStreamer.cs` is a script that fetches video streams through GStreamer framework. Port 1 is for the rear view camera, and port 2 is for the front view camera.
