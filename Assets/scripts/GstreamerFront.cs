@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using OpenCvSharp;
 public class GstreamerFront : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -32,6 +31,5 @@ public class GstreamerFront : MonoBehaviour
         texture.LoadRawTextureData(gst.frame2);
         texture.Apply();
         material.mainTexture = texture;
-        material.color = Color.white;
     }
 }

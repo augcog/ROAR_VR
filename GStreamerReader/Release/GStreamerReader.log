@@ -1,0 +1,15 @@
+﻿  dllmain.cpp
+     Creating library C:\Users\John Dagdelen\ROAR_VR\GStreamerReader\Release\GStreamerReader.lib and object C:\Users\John Dagdelen\ROAR_VR\GStreamerReader\Release\GStreamerReader.exp
+dllmain.obj : error LNK2001: unresolved external symbol "public: void __thiscall cv::Mat::copySize(class cv::Mat const &)" (?copySize@Mat@cv@@QAEXABV12@@Z)
+dllmain.obj : error LNK2001: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPAX@Z)
+dllmain.obj : error LNK2001: unresolved external symbol "public: void __thiscall cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QAEXXZ)
+dllmain.obj : error LNK2001: unresolved external symbol "public: __thiscall cv::VideoCapture::VideoCapture(void)" (??0VideoCapture@cv@@QAE@XZ)
+dllmain.obj : error LNK2001: unresolved external symbol "public: virtual __thiscall cv::VideoCapture::~VideoCapture(void)" (??1VideoCapture@cv@@UAE@XZ)
+dllmain.obj : error LNK2001: unresolved external symbol "public: __thiscall cv::VideoCapture::VideoCapture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (??0VideoCapture@cv@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)
+dllmain.obj : error LNK2001: unresolved external symbol "void __cdecl cv::fisheye::initUndistortRectifyMap(class cv::_InputArray const &,class cv::_InputArray const &,class cv::_InputArray const &,class cv::_InputArray const &,class cv::Size_<int> const &,int,class cv::_OutputArray const &,class cv::_OutputArray const &)" (?initUndistortRectifyMap@fisheye@cv@@YAXABV_InputArray@2@000ABV?$Size_@H@2@HABV_OutputArray@2@2@Z)
+dllmain.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall cv::VideoCapture::isOpened(void)const " (?isOpened@VideoCapture@cv@@UBE_NXZ)
+dllmain.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall cv::VideoCapture::read(class cv::_OutputArray const &)" (?read@VideoCapture@cv@@UAE_NABV_OutputArray@2@@Z)
+dllmain.obj : error LNK2001: unresolved external symbol "void __cdecl cv::remap(class cv::_InputArray const &,class cv::_OutputArray const &,class cv::_InputArray const &,class cv::_InputArray const &,int,int,class cv::Scalar_<double> const &)" (?remap@cv@@YAXABV_InputArray@1@ABV_OutputArray@1@00HHABV?$Scalar_@N@1@@Z)
+dllmain.obj : error LNK2001: unresolved external symbol "void __cdecl cv::cvtColor(class cv::_InputArray const &,class cv::_OutputArray const &,int,int)" (?cvtColor@cv@@YAXABV_InputArray@1@ABV_OutputArray@1@HH@Z)
+dllmain.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall cv::VideoCapture::release(void)" (?release@VideoCapture@cv@@UAEXXZ)
+C:\Users\John Dagdelen\ROAR_VR\GStreamerReader\Release\GStreamerReader.dll : fatal error LNK1120: 12 unresolved externals
