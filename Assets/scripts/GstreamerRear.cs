@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using OpenCvSharp;
+
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,7 +27,7 @@ public class GstreamerRear : MonoBehaviour
         texture = new Texture2D(width, height, TextureFormat.RGB24, false, false);
         //textureleft = new Texture2D(height, height);
         //textureright = new Texture2D(height, height);
-        gst = GameObject.Find("Utility").GetComponent<Gstreamer>();
+        ////gst = GameObject.Find("Utility").GetComponent<Gstreamer>();
         //f1 = gst.f1;
     }
 
@@ -36,7 +36,7 @@ public class GstreamerRear : MonoBehaviour
     {
         //frame1 = new byte[gst.size1];
         //System.Runtime.InteropServices.Marshal.Copy(f1, frame1, 0, gst.size1);
-        texture.LoadRawTextureData(gst.frame1);
+        ////texture.LoadRawTextureData(gst.frame1);
         texture.Apply();
         materialleft.mainTexture = texture;
         //materialleft.color = Color.white;
